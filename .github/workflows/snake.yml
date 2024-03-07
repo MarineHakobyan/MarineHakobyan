@@ -36,5 +36,5 @@ jobs:
           git config user.email "marine.hakobyan4649@gmail.com"
           git add .
           git commit -m "Generate Snake Game"
-          git remote set-url origin "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          git remote set-url origin "https://${{ secrets.BOT_TOKEN }}@github.com/${{ github.repository }}.git"
           git push
