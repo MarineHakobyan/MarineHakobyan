@@ -3,6 +3,9 @@ on:
   # Run every 24 hours, 1 hour after the snake cron job
   schedule:
     - cron: "0 1 */1 * *"
+  
+  # Allow manual triggering
+  workflow_dispatch:
 
 jobs:
   update-readme:
