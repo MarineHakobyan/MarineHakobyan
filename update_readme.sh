@@ -1,8 +1,8 @@
 #!/bin/bash
 
-repo="MarineHakobyan/MarineHakobyan"  # Replace with your repository path
-branch="output"  # Replace with the branch name
-readme_file="README.md"  # Replace with the path to your README file
+repo="MarineHakobyan/MarineHakobyan"
+branch="output"
+readme_file="README.md"
 
 files=$(git log --pretty=format: --name-only --diff-filter=A origin/$branch | sort - | sed '/^$/d')
 
