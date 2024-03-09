@@ -1,0 +1,25 @@
+name: Update Readme with New Images
+on:
+  # Run every 24 hours, 1 hour after the snake cron job
+  schedule:
+    - cron: "0 1 */1 * *"
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update README with new image links
+        run: |
+          sed -i 's|https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/[^/]\+/github-contribution-grid-snake-dark.svg|'"$(curl -s https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/output/dist/github-contribution-grid-snake-dark.svg | base64 -w 0)"'|g' README.md
+          sed -i 's|https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/[^/]\+/github-contribution-grid-snake.svg|'"$(curl -s https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/output/dist/github-contribution-grid-snake.svg | base64 -w 0)"'|g' README.md
+
+      - name: Commit and push changes to main branch
+        run: |
+          git config --local user.email "marine.hakobyan4649@gmail.com"
+          git config --local user.name "MarineHakobyan"
+          git add README.md
+          git commit -m "Update README with New Images"
+          git push origin main
