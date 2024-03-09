@@ -1,17 +1,17 @@
 name: Update Readme
 
 on:
-  # run automatically every 24 hours
+  # Run automatically every 24 hours
   schedule:
-    - cron: "0 */24 * * *"
+    - cron: "0 1 */1 * *"
   
-  # allows to manually run the job at any time
+  # Allows to manually run the job at any time
   workflow_dispatch:
   
-  # run on every push on the master branch
+  # Run on every push on the master branch (or update for your actual target branch)
   push:
     branches:
-    - master
+    - master  # Update if your target branch is different
 
 jobs:
   generate:
@@ -21,11 +21,22 @@ jobs:
     timeout-minutes: 5
     
     steps:
-      # Run the ./replace_readme.sh script
-      - name: Run replace_readme.sh
-        run: ./replace_readme.sh
+      # Check script permissions (assuming script is in repository root)
+      - name: Check replace_readme.sh permissions
+        run: chmod +x replace_readme.sh
+      
+      # Run the ./replace_readme.sh script with verbose output
+      - name: Run replace_readme.sh (with verbose output)
+        run: ./replace_readme.sh --verbose
         with:
-          target_branch: main
-          build_dir: dist
+          target_branch: main  # Update if your target branch is different
+          build_dir: dist     # Update if your build directory is different
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # (Optional) Install dependencies if needed (replace with actual commands)
+      - name: Install dependencies (if required)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y <package_name>  # Replace with actual package
+
