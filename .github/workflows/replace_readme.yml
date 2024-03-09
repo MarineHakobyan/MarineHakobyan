@@ -1,28 +1,31 @@
-name: Update Readme
+name: Generate Snake
 
 on:
+  # run automatically every 24 hours
+  schedule:
+    - cron: "0 */24 * * *"
+  
+  # allows to manually run the job at any time
+  workflow_dispatch:
+  
+  # run on every push on the master branch
   push:
     branches:
-      - main
+    - master
 
 jobs:
-  update_readme:
+  generate:
+    permissions: 
+      contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+      # Run the ./replace_readme.sh script
       - name: Run replace_readme.sh
-        run: |
-          chmod +x replace_readme.sh
-          ./replace_readme.sh
-        working-directory: ${{ github.workspace }}
-
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add .
-          git commit -m "Update Readme using replace_readme.sh"
-          git push
-        working-directory: ${{ github.workspace }}
+        run: ./replace_readme.sh
+        with:
+          target_branch: main
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
