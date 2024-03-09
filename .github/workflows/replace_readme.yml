@@ -4,11 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       repo:
-        description: 'Repository path (e.g., MarineHakobyan/MarineHakobyan)'
-        required: true
+        default: 'MarineHakobyan/MarineHakobyan'
       branch:
-        description: 'Branch name (e.g., main)'
-        required: true
+        default: 'main'
 
 jobs:
   replace-readme:
@@ -20,9 +18,5 @@ jobs:
 
     - name: Run replace_readme.sh
       run: |
+        chmod +x replace_readme.sh
         ./replace_readme.sh
-        git add README.md
-        git config --local user.email "marine.hakobyan4649@gmail.com"
-        git config --local user.name "MarineHakobyan"
-        git commit -m "Update README with New Commit Hashes"
-        git push origin ${{ github.event.inputs.branch }}
