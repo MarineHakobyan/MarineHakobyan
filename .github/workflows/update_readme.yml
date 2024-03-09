@@ -5,6 +5,9 @@ on:
 schedule:
   - cron: "0 1 * * *"
 
+  # allows to manually run the job at any time
+  workflow_dispatch:
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest
