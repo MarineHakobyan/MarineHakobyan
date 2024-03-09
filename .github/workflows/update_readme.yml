@@ -1,38 +1,34 @@
-name: Update README on Schedule
+name: Update README
 
 on:
-  # Run the workflow at 01:00 on the first day of every month (adjust cron syntax as needed)
-  schedule:
-    - cron: "0 1 */1 * *"
-
-      
-  # allows to manually run the job at any time
-  workflow_dispatch:
+# run automatically every 24 hours (1 hour after UTC Midnight)
+schedule:
+  - cron: "0 1 * * *"
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3  # Checkout the repository
+
       - name: Run script to update README
-        run: bash your-script.sh  # Replace with your actual script name
+        run: bash ./update_readme.sh
 
-      - name: Install required dependencies (if needed)
-        # Add this step if your script requires specific tools
+      - name: Git configuration
         run: |
-          sudo apt update  # Update package lists (adjust as needed)
-          sudo apt install some-package  # Install a specific package (adjust as needed)
+          git config --local user.email "marine.hakobyan4649.com"
+          git config --local user.name "MarineHakobyan"
 
-      - name: Commit changes
+      - name: Add and commit changes
         run: |
-          git config --local user.email "your-email@example.com"
-          git config --local user.name "Your Name"
-          git add README.md  # Add the updated README file
+          git add README.md
           git commit -m "Update README on schedule"
-      - name: Create a pull request
-        uses: apps/auto-pull-request@v2  # Use a dedicated action for pull requests
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          title: "Automatic Update: Updated README"
-          body: "This pull request automatically updates the README file based on your script."
-          head: ${{ github.sha }}  # Current commit SHA as the pull request head
-          base: main  # Target branch for the pull request
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true
+
