@@ -23,7 +23,8 @@ jobs:
       - name: Run script to update README
         run: |
           ls -la
-          bash -x ./update_readme.sh
+          git branch --sh
+          bash update_readme.sh
         shell: bash
 
       - name: Display README content
