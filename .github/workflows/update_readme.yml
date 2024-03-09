@@ -1,9 +1,9 @@
 name: Update README
 
 on:
-# run automatically every 24 hours (1 hour after UTC Midnight)
-schedule:
-  - cron: "0 1 * * *"
+  # run automatically every 24 hours (1 hour after UTC Midnight)
+  schedule:
+    - cron: "0 1 * * *"
 
   # allows to manually run the job at any time
   workflow_dispatch:
@@ -34,4 +34,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           force: true
-
