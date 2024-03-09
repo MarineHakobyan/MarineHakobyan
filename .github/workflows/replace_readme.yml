@@ -1,0 +1,28 @@
+name: Replace README
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repository path (e.g., MarineHakobyan/MarineHakobyan)'
+        required: true
+      branch:
+        description: 'Branch name (e.g., main)'
+        required: true
+
+jobs:
+  replace-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run replace_readme.sh
+      run: |
+        ./replace_readme.sh
+        git add README.md
+        git config --local user.email "marine.hakobyan4649@gmail.com"
+        git config --local user.name "MarineHakobyan"
+        git commit -m "Update README with New Commit Hashes"
+        git push origin ${{ github.event.inputs.branch }}
