@@ -1,22 +1,28 @@
-name: Replace README
+name: Update Readme
 
 on:
-  workflow_dispatch:
-    inputs:
-      repo:
-        default: 'MarineHakobyan/MarineHakobyan'
-      branch:
-        default: 'main'
+  push:
+    branches:
+      - main
 
 jobs:
-  replace-readme:
+  update_readme:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Run replace_readme.sh
-      run: |
-        chmod +x replace_readme.sh
-        ./replace_readme.sh
+      - name: Run replace_readme.sh
+        run: |
+          chmod +x replace_readme.sh
+          ./replace_readme.sh
+        working-directory: ${{ github.workspace }}
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "Update Readme using replace_readme.sh"
+          git push
+        working-directory: ${{ github.workspace }}
