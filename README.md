@@ -1,5 +1,5 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/ac17538f102af3fcf695bc1e974863fd8491a16f/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/ac17538f102af3fcf695bc1e974863fd8491a16f/github-contribution-grid-snake.svg" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/ac17538f102af3fcf695bc1e974863fd8491a16f/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/eed8691bf82e60197395049daec7f4d00f271faa/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/eed8691bf82e60197395049daec7f4d00f271faa/github-contribution-grid-snake.svg" />
+  <img alt="github-snake" src="https://raw.githubusercontent.com/MarineHakobyan/MarineHakobyan/eed8691bf82e60197395049daec7f4d00f271faa/github-contribution-grid-snake-dark.svg" />
 </picture>
