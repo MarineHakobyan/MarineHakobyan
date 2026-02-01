@@ -1,10 +1,10 @@
 name: Update README
 
 on:
-  # Run the workflow on push events to the main branch
+  # Run the workflow on push events to the master branch (previously main branch)
   push:
     branches:
-      - main
+      - master
 
   # Run automatically every 24 hours (1 hour after UTC Midnight)
   schedule:
@@ -38,5 +38,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: master
           force: true
